@@ -2,7 +2,7 @@
   "name": "es6-node-boilerplate",
   "version": "0.0.1",
   "description": "A boilerplate to author, then transpile, Node libraries in ES6.",
-  "main": "dist/library-dist.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "gulp",
     "build": "gulp build",
