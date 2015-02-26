@@ -1,16 +1,12 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-const fs = require('fs');
 const del = require('del');
-const glob = require('glob');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const isparta = require('isparta');
-const runSequence = require('run-sequence');
-const source = require('vinyl-source-stream');
 
 const manifest = require('./package.json');
-const config = manifest.babelBoilerplateOptions;
+const config = manifest.nodeBoilerplateOptions;
 const mainFile = manifest.main;
 const destinationFolder = path.dirname(mainFile);
 const exportFileName = path.basename(mainFile, path.extname(mainFile));
@@ -18,11 +14,6 @@ const exportFileName = path.basename(mainFile, path.extname(mainFile));
 // Remove the built files
 gulp.task('clean', function(cb) {
   del([destinationFolder], cb);
-});
-
-// Remove our temporary files
-gulp.task('clean-tmp', function(cb) {
-  del(['tmp'], cb);
 });
 
 // Send a notification when JSHint fails,
@@ -68,7 +59,6 @@ gulp.task('build', ['lint-src', 'clean'], function() {
   mkdirp.sync(destinationFolder);
   return gulp.src('src/**/*.js')
     .pipe($.plumber())
-    .pipe($.sourcemaps.init())
     .pipe($.babel({ blacklist: ['useStrict'] }))
     .pipe(gulp.dest(destinationFolder));
 });
