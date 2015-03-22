@@ -2,7 +2,6 @@
   "esnext": true,
   "validateQuoteMarks": "'",
   "requireDotNotation": true,
-  "requireCurlyBraces": true,
   "requireCommaBeforeLineBreak": true,
   "requireOperatorBeforeLineBreak": true,
   "disallowTrailingWhitespace": true,
