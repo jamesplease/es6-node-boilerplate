@@ -1,21 +1,6 @@
+// See https://github.com/jscs-dev/node-jscs/tree/master/presets for
+// other options (remember to re-enable esnext)
 {
-  "esnext": true,
-  "validateQuoteMarks": "'",
-  "requireDotNotation": true,
-  "requireCommaBeforeLineBreak": true,
-  "requireOperatorBeforeLineBreak": true,
-  "disallowTrailingWhitespace": true,
-  "disallowMultipleLineStrings": true,
-  "disallowMixedSpacesAndTabs": true,
-  "disallowEmptyBlocks": true,
-
-  "requireCurlyBraces": [
-      "if",
-      "else",
-      "for",
-      "while",
-      "do",
-      "try",
-      "catch"
-  ]
+  "preset": "google",
+  "esnext": true
 }
