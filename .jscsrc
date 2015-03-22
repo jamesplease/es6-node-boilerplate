@@ -8,5 +8,15 @@
   "disallowTrailingWhitespace": true,
   "disallowMultipleLineStrings": true,
   "disallowMixedSpacesAndTabs": true,
-  "disallowEmptyBlocks": true
+  "disallowEmptyBlocks": true,
+
+  "requireCurlyBraces": [
+      "if",
+      "else",
+      "for",
+      "while",
+      "do",
+      "try",
+      "catch"
+  ]
 }

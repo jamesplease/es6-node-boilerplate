@@ -1,5 +1,5 @@
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+const gulp = require('gulp');
+const $ = require('gulp-load-plugins')();
 const del = require('del');
 const path = require('path');
 const mkdirp = require('mkdirp');
@@ -9,7 +9,6 @@ const manifest = require('./package.json');
 const config = manifest.nodeBoilerplateOptions;
 const mainFile = manifest.main;
 const destinationFolder = path.dirname(mainFile);
-const exportFileName = path.basename(mainFile, path.extname(mainFile));
 
 // Remove the built files
 gulp.task('clean', function(cb) {
@@ -63,6 +62,12 @@ gulp.task('build', ['lint-src', 'clean'], function() {
     .pipe(gulp.dest(destinationFolder));
 });
 
+function test() {
+  return gulp.src(['test/setup/node.js', 'test/unit/**/*.js'], {read: false})
+    .pipe($.plumber())
+    .pipe($.mocha({reporter: 'dot', globals: config.mochaGlobals}));
+}
+
 gulp.task('coverage', function(done) {
   require('babel/register');
   gulp.src(['src/*.js'])
@@ -76,11 +81,6 @@ gulp.task('coverage', function(done) {
     });
 });
 
-function test() {
-  return gulp.src(['test/setup/node.js', 'test/unit/**/*.js'], {read: false})
-    .pipe($.plumber())
-    .pipe($.mocha({reporter: 'dot', globals: config.mochaGlobals}));
-};
 
 // Lint and run our tests
 gulp.task('test', ['lint-src', 'lint-test'], function() {
