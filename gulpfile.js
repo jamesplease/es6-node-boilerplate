@@ -68,8 +68,10 @@ function test() {
     .pipe($.mocha({reporter: 'dot', globals: config.mochaGlobals}));
 }
 
+// Make babel preprocess the scripts the user tries to import from here on.
+require('babel/register');
+
 gulp.task('coverage', function(done) {
-  require('babel/register');
   gulp.src(['src/*.js'])
     .pipe($.plumber())
     .pipe($.istanbul({ instrumenter: isparta.Instrumenter }))
@@ -83,13 +85,10 @@ gulp.task('coverage', function(done) {
 
 
 // Lint and run our tests
-gulp.task('test', ['lint-src', 'lint-test'], function() {
-  require('babel/register');
-  return test();
-});
+gulp.task('test', ['lint-src', 'lint-test'], test);
 
 // Run the headless unit tests as you make changes.
-gulp.task('watch', function() {
+gulp.task('watch', ['test'], function() {
   gulp.watch(['src/**/*', 'test/**/*', '.jshintrc', 'test/.jshintrc'], ['test']);
 });
 
