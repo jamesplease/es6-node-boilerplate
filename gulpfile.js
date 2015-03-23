@@ -89,7 +89,7 @@ gulp.task('test', ['lint-src', 'lint-test'], test);
 
 // Run the headless unit tests as you make changes.
 gulp.task('watch', ['test'], function() {
-  gulp.watch(['src/**/*', 'test/**/*', '.jshintrc', 'test/.jshintrc'], ['test']);
+  gulp.watch(['src/**/*', 'test/**/*', 'package.json', '**/.jshintrc', '.jscsrc'], ['test']);
 });
 
 // An alias of test
