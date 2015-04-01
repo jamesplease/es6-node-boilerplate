@@ -2,5 +2,6 @@
 // other options (remember to re-enable esnext)
 {
   "preset": "google",
+  "maximumLineLength": null,
   "esnext": true
 }
